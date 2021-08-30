@@ -6,4 +6,8 @@
     <RootNamespace>Parte_2</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Parte 1\Parte 1.csproj" />
+  </ItemGroup>
+
 </Project>
