@@ -7,146 +7,146 @@ namespace Parte_2
     {
         static void Main(string[] args)
         {
-            B<int> BTree;
-            Console.WriteLine("Laboratorio 1 - Parte II");
-            Console.WriteLine("");
-        Grado:
-            Console.WriteLine("Indique el grado del árbol (Ej. 5)");
-            try
-            {
-                int grado = Convert.ToInt32(Console.ReadLine());
-                if (grado % 2 != 0)
-                {
-                    BTree = new(grado);
-                    Console.Clear();
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("El grado solo puede ser un número impar, por favor intente nuevamente");
-                    goto Grado;
-                }
-            }
-            catch (Exception)
-            {
-                Console.Clear();
-                Console.WriteLine("El grado solo puede ser un número impar, por favor intente nuevamente");
-                goto Grado;
-            }
+        //   B<int> BTree;
+        //    Console.WriteLine("Laboratorio 1 - Parte II");
+        //    Console.WriteLine("");
+        //Grado:
+        //    Console.WriteLine("Indique el grado del árbol (Ej. 5)");
+        //    try
+        //    {
+        //        int grado = Convert.ToInt32(Console.ReadLine());
+        //        if (grado % 2 != 0)
+        //        {
+        //            BTree = new(grado);
+        //            Console.Clear();
+        //        }
+        //        else
+        //        {
+        //            Console.Clear();
+        //            Console.WriteLine("El grado solo puede ser un número impar, por favor intente nuevamente");
+        //            goto Grado;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        Console.Clear();
+        //        Console.WriteLine("El grado solo puede ser un número impar, por favor intente nuevamente");
+        //        goto Grado;
+        //    }
 
-        Menu:
-            Console.WriteLine("¿Qué acción desea realizar?");
-            Console.WriteLine("1)   Añadir");
-            Console.WriteLine("2)   Eliminar");
-            Console.WriteLine("3)   Buscar");
-            Console.WriteLine("0)   Salir");
-            try
-            {
-                int sele = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
-                switch (sele)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                    Add:
-                        Console.WriteLine("Ingrese el número entero que desea agregar al árbol (Ej. 12)");
-                        try
-                        {
-                            BTree.Add(Convert.ToInt32(Console.ReadLine()));
+        //Menu:
+        //    Console.WriteLine("¿Qué acción desea realizar?");
+        //    Console.WriteLine("1)   Añadir");
+        //    Console.WriteLine("2)   Eliminar");
+        //    Console.WriteLine("3)   Buscar");
+        //    Console.WriteLine("0)   Salir");
+        //    try
+        //    {
+        //        int sele = Convert.ToInt32(Console.ReadLine());
+        //        Console.Clear();
+        //        switch (sele)
+        //        {
+        //            case 0:
+        //                break;
+        //            case 1:
+        //            Add:
+        //                Console.WriteLine("Ingrese el número entero que desea agregar al árbol (Ej. 12)");
+        //                try
+        //                {
+        //                    BTree.Add(Convert.ToInt32(Console.ReadLine()));
 
-                        Optio:
-                            Console.Write("¿Desea agregar otro valor? S/N");
-                            string optio = Console.ReadLine().ToUpper();
-                            switch (optio)
-                            {
-                                case "S":
-                                    Console.Clear();
-                                    goto Add;
-                                case "N":
-                                    goto Menu;
-                                default:
-                                    Console.Clear();
-                                    Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
-                                    goto Optio;
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("El dato a ingresar puede ser únicamente un número entero, por favor intente nuevamente");
-                            goto Add;
-                        }
-                    case 2:
-                    Delete:
-                        Console.WriteLine("Ingrese el número entero que desea eliminar del árbol (Ej. 12)");
-                        try
-                        {
-                        //eliminación
+        //                Optio:
+        //                    Console.Write("¿Desea agregar otro valor? S/N");
+        //                    string optio = Console.ReadLine().ToUpper();
+        //                    switch (optio)
+        //                    {
+        //                        case "S":
+        //                            Console.Clear();
+        //                            goto Add;
+        //                        case "N":
+        //                            goto Menu;
+        //                        default:
+        //                            Console.Clear();
+        //                            Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
+        //                            goto Optio;
+        //                    }
+        //                }
+        //                catch (Exception)
+        //                {
+        //                    Console.Clear();
+        //                    Console.WriteLine("El dato a ingresar puede ser únicamente un número entero, por favor intente nuevamente");
+        //                    goto Add;
+        //                }
+        //            case 2:
+        //            Delete:
+        //                Console.WriteLine("Ingrese el número entero que desea eliminar del árbol (Ej. 12)");
+        //                try
+        //                {
+        //                //eliminación
 
-                        Optio:
-                            Console.Write("¿Desea eliminar otro valor? S/N");
-                            string optio = Console.ReadLine().ToUpper();
-                            switch (optio)
-                            {
-                                case "S":
-                                    Console.Clear();
-                                    goto Add;
-                                case "N":
-                                    goto Menu;
-                                default:
-                                    Console.Clear();
-                                    Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
-                                    goto Optio;
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("El dato a eliminar puede ser únicamente un número entero, por favor intente nuevamente");
-                            goto Delete;
-                        }
-                    case 3:
-                    Search:
-                        Console.WriteLine("Ingrese el número entero que desea buscar en el árbol (Ej. 12)");
-                        try
-                        {
-                        //búsqueda
+        //                Optio:
+        //                    Console.Write("¿Desea eliminar otro valor? S/N");
+        //                    string optio = Console.ReadLine().ToUpper();
+        //                    switch (optio)
+        //                    {
+        //                        case "S":
+        //                            Console.Clear();
+        //                            goto Add;
+        //                        case "N":
+        //                            goto Menu;
+        //                        default:
+        //                            Console.Clear();
+        //                            Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
+        //                            goto Optio;
+        //                    }
+        //                }
+        //                catch (Exception)
+        //                {
+        //                    Console.Clear();
+        //                    Console.WriteLine("El dato a eliminar puede ser únicamente un número entero, por favor intente nuevamente");
+        //                    goto Delete;
+        //                }
+        //            case 3:
+        //            Search:
+        //                Console.WriteLine("Ingrese el número entero que desea buscar en el árbol (Ej. 12)");
+        //                try
+        //                {
+        //                //búsqueda
 
-                        Optio:
-                            Console.Write("¿Desea buscar otro valor? S/N");
-                            string optio = Console.ReadLine().ToUpper();
-                            switch (optio)
-                            {
-                                case "S":
-                                    Console.Clear();
-                                    goto Add;
-                                case "N":
-                                    goto Menu;
-                                default:
-                                    Console.Clear();
-                                    Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
-                                    goto Optio;
-                            }
-                        }
-                        catch (Exception)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("El valor a buscar puede ser únicamente un número entero, por favor intente nuevamente");
-                            goto Search;
-                        }
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
-                        goto Menu;
-                }
-            }
-            catch (Exception)
-            {
-                Console.Clear();
-                Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
-                goto Menu;
-            }
+        //                Optio:
+        //                    Console.Write("¿Desea buscar otro valor? S/N");
+        //                    string optio = Console.ReadLine().ToUpper();
+        //                    switch (optio)
+        //                    {
+        //                        case "S":
+        //                            Console.Clear();
+        //                            goto Add;
+        //                        case "N":
+        //                            goto Menu;
+        //                        default:
+        //                            Console.Clear();
+        //                            Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
+        //                            goto Optio;
+        //                    }
+        //                }
+        //                catch (Exception)
+        //                {
+        //                    Console.Clear();
+        //                    Console.WriteLine("El valor a buscar puede ser únicamente un número entero, por favor intente nuevamente");
+        //                    goto Search;
+        //                }
+        //            default:
+        //                Console.Clear();
+        //                Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
+        //                goto Menu;
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        Console.Clear();
+        //        Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
+        //        goto Menu;
+        //    }
 
             B<int> Prueba = new(5);
             Prueba.Add(10);
@@ -174,6 +174,10 @@ namespace Parte_2
             Prueba.Add(50);
             Prueba.Add(90);
             Prueba.Add(82);
+            Prueba.Delete(36);
+            Prueba.Delete(21);
+            Prueba.Delete(19);
+            Prueba.Delete(6);
         }
     }
 }
