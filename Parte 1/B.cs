@@ -358,7 +358,7 @@ namespace Parte_1
                 }
             }
             //si ninguno le puede prestar, se une 
-            if(!borrowed)
+            if (!borrowed)
             {
                 //unión izquierda
                 // si no es el primer hijo
@@ -389,11 +389,11 @@ namespace Parte_1
                     //acomodar padre
                     if (p.Count == 0 && p == Root)
                     {
-                            Root = min;
+                        Root = min;
                     }
                     else
                     {
-                        if(p.Count < this.min && p!=Root)
+                        if (p.Count < this.min && p != Root)
                         {
                             Prestamo(p);
                         }
@@ -404,7 +404,7 @@ namespace Parte_1
                                 p.Keys[i] = p.Keys[i + 1];
                             }
                             //acomodar hijos padre
-                            for (int i = posc -1 ; i < p.Count + 1; i++)
+                            for (int i = posc - 1; i < p.Count + 1; i++)
                             {
                                 p.Children[i] = p.Children[i + 1];
                             }
@@ -439,7 +439,7 @@ namespace Parte_1
                             p.Keys[i] = p.Keys[i + 1];
                         }
                         //acomodar hijos padre
-                        for (int i = posc +1; i < p.Count + 1; i++)
+                        for (int i = posc + 1; i < p.Count + 1; i++)
                         {
                             p.Children[i] = p.Children[i + 1];
                         }
@@ -452,7 +452,7 @@ namespace Parte_1
                 }
             }
         }
-       
+
     }
 }
 
