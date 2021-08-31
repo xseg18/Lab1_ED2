@@ -38,7 +38,16 @@ namespace Parte_3.Controllers
         [HttpDelete]
         public ActionResult DeleteT()
         {
-            return NoContent();
+            try
+            {
+                Singleton.Instance.Movies.Clear();
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+            
         }
 
         [Route("populate")]
@@ -61,11 +70,27 @@ namespace Parte_3.Controllers
             }
         }
 
-        [Route("populate")]
+        [Route("populate/{id}")]
         [HttpDelete]
         public ActionResult Delete([FromRoute] string id)
         {
-            return NoContent();
+            try
+            {
+                try
+                {
+                    //Singleton.Instance.Movies.Delete(id);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception)
+            {
+
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

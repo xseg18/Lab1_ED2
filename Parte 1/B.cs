@@ -453,6 +453,10 @@ namespace Parte_1
             }
         }
 
+        public void Clear()
+        {
+            Root = null;
+        }
     }
 }
 
