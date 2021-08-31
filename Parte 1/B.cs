@@ -292,27 +292,27 @@ namespace Parte_1
             return null;
         }
 
-        void Unir(Node min)
-        {
-            Node p = Padre(Root, min);
-            int posc = Array.IndexOf(p.Children, min);
+        //void Unir(Node min)
+        //{
+        //    Node p = Padre(Root, min);
+        //    int posc = Array.IndexOf(p.Children, min);
 
-            min.Keys[min.Count] = p.Keys[posc];
-            min.Count++;
-            p.Count--;
-            p.Keys[posc] = default;
-            for (int i = 0; i < p.Children[posc + 1].Count; i++)
-            {
-                min.Keys[min.Count] = p.Children[posc + 1].Keys[i];
-                min.Count++;
-            }
-            p.Children[posc + 1] = null;
-            if (p.Count == this.min)
-            {
-                Unir(p);
-            }
-            if (min.Count == )
-        }
+        //    min.Keys[min.Count] = p.Keys[posc];
+        //    min.Count++;
+        //    p.Count--;
+        //    p.Keys[posc] = default;
+        //    for (int i = 0; i < p.Children[posc + 1].Count; i++)
+        //    {
+        //        min.Keys[min.Count] = p.Children[posc + 1].Keys[i];
+        //        min.Count++;
+        //    }
+        //    p.Children[posc + 1] = null;
+        //    if (p.Count == this.min)
+        //    {
+        //        Unir(p);
+        //    }
+        //    if (min.Count == )
+        //}
     }
 }
 
