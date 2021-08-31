@@ -291,168 +291,27 @@ namespace Parte_1
             return null;
         }
 
-        void Prestamo(Node min)
+        void Unir(Node min)
         {
             Node p = Padre(Root, min);
             int posc = Array.IndexOf(p.Children, min);
-            bool borrowed = false;
-            //si no es el ultimo hijo
-            if (posc + 1 < max)
+
+            min.Keys[min.Count] = p.Keys[posc];
+            min.Count++;
+            p.Count--;
+            p.Keys[posc] = default;
+            for (int i = 0; i < p.Children[posc + 1].Count; i++)
             {
-                //si el hermano existe
-                if (p.Children[posc + 1] != null)
-                {
-                    //si hay más del minimo en el hermano
-                    if (p.Children[posc + 1].Count > this.min)
-                    {
-                        //bajo raiz
-                        min.Keys[min.Count] = p.Keys[posc];
-                        //subo menor del hermano mayor
-                        p.Keys[posc] = p.Children[posc + 1].Keys[0];
-                        //reordenamos hermano mayor 
-                        for (int i = 0; i < p.Children[posc + 1].Count; i++)
-                        {
-                            p.Children[posc + 1].Keys[i] = p.Children[posc + 1].Keys[i + 1];
-                        }
-                        //hijo menor a hijo mayor
-                        min.Children[min.Count + 1] = p.Children[posc + 1].Children[0];
-                        //reordenamos hijos del hermano
-                        for (int i = 0; i < p.Children[posc + 1].Count + 1; i++)
-                        {
-                            p.Children[posc + 1].Children[i] = p.Children[posc + 1].Children[i + 1];
-                        }
-                        //acualizamos contadores
-                        p.Children[posc + 1].Count--;
-                        min.Count++;
-                        borrowed = true;
-                    }
-                }
+                min.Keys[min.Count] = p.Children[posc + 1].Keys[i];
+                min.Count++;
             }
-            // si no es el primer hijo
-            if (posc - 1 >= 0 && !borrowed)
+            p.Children[posc + 1] = null;
+            if (p.Count == this.min)
             {
-                //si hay más del minimo en el hermano
-                if (p.Children[posc - 1].Count > this.min)
-                {
-                    //acomodar nodo
-                    for (int i = min.Count; i >= 0; i--)
-                    {
-                        min.Keys[i + 1] = min.Keys[i];
-                    }
-                    //bajo raiz
-                    min.Keys[0] = p.Keys[posc - 1];
-                    //subo mayor del hermano menor
-                    p.Keys[posc - 1] = p.Children[posc - 1].Keys[p.Children[posc - 1].Count - 1];
-                    p.Children[posc - 1].Keys[p.Children[posc - 1].Count - 1] = default;
-                    //reordenamos hijos
-                    for (int i = min.Count; i <= 0; i--)
-                    {
-                        min.Children[i + 1] = min.Children[i];
-                    }
-                    //hijo mayor a hijo menor
-                    min.Children[0] = p.Children[posc - 1].Children[p.Children[posc - 1].Count];
-                    //actualizar contador
-                    p.Children[posc - 1].Count--;
-                    min.Count++;
-                    borrowed = true;
-                }
+                Unir(p);
             }
-            //si ninguno le puede prestar, se une 
-            if(!borrowed)
-            {
-                //unión izquierda
-                // si no es el primer hijo
-                if (posc - 1 >= 0)
-                {
-                    //acomodar nodo
-                    for (int i = 0; i < this.min; i++)
-                    {
-                        min.Keys[i + p.Children[posc - 1].Count + 1] = min.Keys[i];
-                    }
-                    //acomodar hijos
-                    for (int i = 0; i < this.min + 1; i++)
-                    {
-                        min.Children[i + p.Children[posc - 1].Count] = min.Children[i];
-                    }
-                    //bajar raiz
-                    min.Keys[p.Children[posc - 1].Count] = p.Keys[posc - 1];
-                    //actualizar contadores
-                    min.Count++;
-                    //acomodar hermano en nodo
-                    for (int i = 0; i < p.Children[posc - 1].Count; i++)
-                    {
-                        min.Keys[i] = p.Children[posc - 1].Keys[i];
-                        min.Count++;
-                    }
-                    //vaciar posicion hermano
-                    p.Children[posc - 1] = default;
-                    //acomodar padre
-                    if (p.Count == 0 && p == Root)
-                    {
-                            Root = min;
-                    }
-                    else
-                    {
-                        if(p.Count < this.min && p!=Root)
-                        {
-                            Prestamo(p);
-                        }
-                        else
-                        {
-                            for (int i = posc - 1; i < p.Count; i++)
-                            {
-                                p.Keys[i] = p.Keys[i + 1];
-                            }
-                            //acomodar hijos padre
-                            for (int i = posc -1 ; i < p.Count + 1; i++)
-                            {
-                                p.Children[i] = p.Children[i + 1];
-                            }
-                        }
-                    }
-                    p.Count--;
-                }
-                //unión derecha
-                else
-                {
-                    //bajar raiz
-                    min.Keys[min.Count] = p.Keys[posc];
-                    //actualizar contadores
-                    min.Count++;
-                    //acomodar hermano en nodo
-                    for (int i = 0; i < p.Children[posc + 1].Count; i++)
-                    {
-                        min.Keys[min.Count] = p.Children[posc + 1].Keys[i];
-                        min.Count++;
-                    }
-                    //vaciar posicion hermano
-                    p.Children[posc + 1] = default;
-                    //acomodar padre
-                    if (p.Count == 0 && p == Root)
-                    {
-                        Root = min;
-                    }
-                    else
-                    {
-                        for (int i = posc; i < p.Count; i++)
-                        {
-                            p.Keys[i] = p.Keys[i + 1];
-                        }
-                        //acomodar hijos padre
-                        for (int i = posc +1; i < p.Count + 1; i++)
-                        {
-                            p.Children[i] = p.Children[i + 1];
-                        }
-                        p.Count--;
-                        if (p.Count < this.min && p != Root)
-                        {
-                            Prestamo(p);
-                        }
-                    }
-                }
-            }
+            if (min.Count == )
         }
-       
     }
 }
 
