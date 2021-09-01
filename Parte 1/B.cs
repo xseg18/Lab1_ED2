@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Parte_1
 {
@@ -452,7 +453,80 @@ namespace Parte_1
                 }
             }
         }
+        //limpia todo el árbol
+        public void Clean()
+        {
+            Root = null;
 
+        }
+
+        //recorridos
+        public List<T> InOrder()
+        {
+            List<T> val = new List<T>();
+            InOrder(Root, val);
+            return val;
+        }
+        void InOrder(Node raiz, List<T> val)
+        {
+            int i;
+            for (i = 0; i < raiz.Count; i++)
+            {
+                if (raiz.Children[i] != null)
+                {
+                    InOrder(raiz.Children[i], val);
+                }
+                val.Add(raiz.Keys[i]); 
+            }
+            if (raiz.Children[i] != null)
+                InOrder(raiz.Children[i], val);
+        }
+
+        public List<T> PostOrder()
+        {
+            List<T> val = new List<T>();
+            PostOrder(Root, val);
+            return val;
+        }
+        void PostOrder(Node raiz, List<T> val)
+        {
+            int i;
+            for (i = 0; i < raiz.Count; i++)
+            {
+                if (raiz.Children[i] != null)
+                {
+                    PostOrder(raiz.Children[i], val);
+                }
+            }
+            if (raiz.Children[i] != null)
+            {
+                InOrder(raiz.Children[i], val);
+            }
+           val.Add(raiz.Keys[i]);
+        }
+
+        public List<T> PreOrder()
+        {
+            List<T> val = new List<T>();
+            PreOrder(Root, val);
+            return val;
+        }
+        void PreOrder(Node raiz, List<T> val)
+        {
+            int i;
+            for (i = 0; i < raiz.Count; i++)
+            {
+                val.Add(raiz.Keys[i]);
+                if (raiz.Children[i] != null)
+                {
+                    PostOrder(raiz.Children[i], val);
+                }
+            }
+            if (raiz.Children[i] != null)
+            {
+                InOrder(raiz.Children[i], val);
+            }
+        }
     }
 }
 

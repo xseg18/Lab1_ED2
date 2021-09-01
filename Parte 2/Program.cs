@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Parte_1;
 
 namespace Parte_2
@@ -174,10 +175,7 @@ namespace Parte_2
             Prueba.Add(50);
             Prueba.Add(90);
             Prueba.Add(82);
-            Prueba.Delete(36);
-            Prueba.Delete(21);
-            Prueba.Delete(19);
-            Prueba.Delete(6);
+            List<int> p = Prueba.InOrder();
         }
     }
 }
