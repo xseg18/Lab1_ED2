@@ -476,10 +476,12 @@ namespace Parte_1
                 {
                     InOrder(raiz.Children[i], val);
                 }
-                val.Add(raiz.Keys[i]); 
+                val.Add(raiz.Keys[i]);
             }
             if (raiz.Children[i] != null)
+            {
                 InOrder(raiz.Children[i], val);
+            }
         }
 
         public List<T> PostOrder()
@@ -500,9 +502,9 @@ namespace Parte_1
             }
             if (raiz.Children[i] != null)
             {
-                InOrder(raiz.Children[i], val);
+                PostOrder(raiz.Children[i], val);
             }
-           val.Add(raiz.Keys[i]);
+            val.Add(raiz.Keys[i]);
         }
 
         public List<T> PreOrder()
@@ -519,12 +521,34 @@ namespace Parte_1
                 val.Add(raiz.Keys[i]);
                 if (raiz.Children[i] != null)
                 {
-                    PostOrder(raiz.Children[i], val);
+                    PreOrder(raiz.Children[i], val);
                 }
             }
             if (raiz.Children[i] != null)
             {
-                InOrder(raiz.Children[i], val);
+                PreOrder(raiz.Children[i], val);
+            }
+        }
+
+        //encontrar nodo apartir de atributo
+        public void Foreach(Action<T> action)
+        {
+            Foreach(action, Root);
+        }
+        void Foreach(Action<T> action, Node raiz)
+        {
+            int i;
+            for (i = 0; i < raiz.Count; i++)
+            {
+                if (raiz.Children[i] != null)
+                {
+                    Foreach(action, raiz.Children[i]);
+                }
+                action(raiz.Keys[i]);
+            }
+            if (raiz.Children[i] != null)
+            {
+                Foreach(action, raiz.Children[i]);
             }
         }
     }
