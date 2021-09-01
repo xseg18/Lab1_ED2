@@ -531,26 +531,30 @@ namespace Parte_1
         }
 
         //encontrar nodo apartir de atributo
-        public void Foreach(Action<T> action)
+        public T Find(Predicate<T> action)
         {
-            Foreach(action, Root);
+            return Find(action, Root);
         }
-        void Foreach(Action<T> action, Node raiz)
+        T Find(Predicate<T> action, Node raiz)
         {
             int i;
             for (i = 0; i < raiz.Count; i++)
             {
                 if (raiz.Children[i] != null)
                 {
-                    Foreach(action, raiz.Children[i]);
+                    Find(action, raiz.Children[i]);
                 }
-                action(raiz.Keys[i]);
+                if (action(raiz.Keys[i]))
+                {
+                    return raiz.Keys[i];
+                }
             }
             if (raiz.Children[i] != null)
             {
-                Foreach(action, raiz.Children[i]);
+                Find(action, raiz.Children[i]);
             }
+            return default;
         }
     }
-}
+}   
 
