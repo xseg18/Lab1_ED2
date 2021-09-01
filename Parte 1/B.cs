@@ -537,21 +537,24 @@ namespace Parte_1
         }
         T Find(Predicate<T> action, Node raiz)
         {
-            int i;
-            for (i = 0; i < raiz.Count; i++)
+            if (raiz != null)
             {
+                int i;
+                for (i = 0; i < raiz.Count; i++)
+                {
+                    if (raiz.Children[i] != null)
+                    {
+                        Find(action, raiz.Children[i]);
+                    }
+                    if (action(raiz.Keys[i]))
+                    {
+                        return raiz.Keys[i];
+                    }
+                }
                 if (raiz.Children[i] != null)
                 {
                     Find(action, raiz.Children[i]);
                 }
-                if (action(raiz.Keys[i]))
-                {
-                    return raiz.Keys[i];
-                }
-            }
-            if (raiz.Children[i] != null)
-            {
-                Find(action, raiz.Children[i]);
             }
             return default;
         }
