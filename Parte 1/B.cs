@@ -274,7 +274,7 @@ namespace Parte_1
         Node Search(T value, Node Raiz)
         {
             int i = 0;
-            while (Raiz != null && i <= Raiz.Count)
+            while (Raiz != null && i < Raiz.Count)
             {
                 if (Raiz.Keys[i].Equals(value))
                 {
@@ -282,12 +282,22 @@ namespace Parte_1
                 }
                 else
                 {
-                    if (Search(value, Raiz.Children[i]) != null)
+                    if (Raiz.Children[i] != null)
                     {
-                        return Search(value, Raiz.Children[i]);
+                        if (Search(value, Raiz.Children[i]) != null)
+                        {
+                            return Search(value, Raiz.Children[i]);
+                        }
                     }
                 }
                 i++;
+            }
+            if (Raiz.Children[i] != null)
+            {
+                if (Search(value, Raiz.Children[i]) != null)
+                {
+                    return Search(value, Raiz.Children[i]);
+                }
             }
             return null;
         }
@@ -544,7 +554,10 @@ namespace Parte_1
                 {
                     if (raiz.Children[i] != null)
                     {
-                        Find(action, raiz.Children[i]);
+                        if(Find(action, raiz.Children[i]) != null )
+                        {
+                            return Find(action, raiz.Children[i]);
+                        }
                     }
                     if (action(raiz.Keys[i]))
                     {
@@ -553,7 +566,10 @@ namespace Parte_1
                 }
                 if (raiz.Children[i] != null)
                 {
-                    Find(action, raiz.Children[i]);
+                    if (Find(action, raiz.Children[i]) != null)
+                    {
+                        return Find(action, raiz.Children[i]);
+                    }
                 }
             }
             return default;
