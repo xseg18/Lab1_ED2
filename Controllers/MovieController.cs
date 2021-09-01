@@ -11,13 +11,31 @@ using System.IO;
 
 namespace Parte_3.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class MovieController : Controller
     {
         [HttpGet("{traversal}")]
         public ActionResult Path([FromRoute] string traversal)
         {
-            return NoContent();
+            try
+            {
+                switch (traversal.ToUpper())
+                {
+                    case "INORDER":
+                        return Ok(JsonSerializer.Serialize(Singleton.Instance.Movies.InOrder()));
+                    case "POSTORDER":
+                        return Ok(JsonSerializer.Serialize(Singleton.Instance.Movies.PostOrder()));
+                    case "PREORDER":
+                        return Ok(JsonSerializer.Serialize(Singleton.Instance.Movies.PreOrder()));
+                    default:
+                        return new StatusCodeResult(StatusCodes.Status400BadRequest);
+                }
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpPost]
@@ -26,8 +44,16 @@ namespace Parte_3.Controllers
             try
             {
                 string json = source.GetProperty("Order").ToString();
-                Singleton.Instance.Movies = new Parte_1.B<Movie>(Convert.ToInt32(json));
-                return Ok();
+                int degree = Convert.ToInt32(json);
+                try
+                {
+                    Singleton.Instance.Movies = new Parte_1.B<Movie>(degree);
+                    return Ok();
+                }
+                catch (Exception)
+                {
+                    return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+                }
             }
             catch (Exception)
             {

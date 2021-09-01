@@ -454,7 +454,7 @@ namespace Parte_1
             }
         }
         //limpia todo el árbol
-        public void Clean()
+        public void Clear()
         {
             Root = null;
 
