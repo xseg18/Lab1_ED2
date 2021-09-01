@@ -439,26 +439,24 @@ namespace Parte_1
                     //vaciar posicion hermano
                     p.Children[posc + 1] = default;
                     //acomodar padre
+                    for (int i = posc; i < p.Count; i++)
+                    {
+                        p.Keys[i] = p.Keys[i + 1];
+                    }
+                    //acomodar hijos padre
+                    for (int i = posc + 1; i < p.Count + 1; i++)
+                    {
+                        p.Children[i] = p.Children[i + 1];
+                    }
+                    p.Count--;
                     if (p.Count == 0 && p == Root)
                     {
+                        p = min;
                         Root = min;
                     }
-                    else
+                    if (p.Count < this.min && p != Root)
                     {
-                        for (int i = posc; i < p.Count; i++)
-                        {
-                            p.Keys[i] = p.Keys[i + 1];
-                        }
-                        //acomodar hijos padre
-                        for (int i = posc + 1; i < p.Count + 1; i++)
-                        {
-                            p.Children[i] = p.Children[i + 1];
-                        }
-                        p.Count--;
-                        if (p.Count < this.min && p != Root)
-                        {
-                            Prestamo(p);
-                        }
+                        Prestamo(p);
                     }
                 }
             }
