@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Text.Json;
 using Parte_3.Models;
 using Parte_3.Models.Data;
+using System.IO;
 
 namespace Parte_3.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
     public class MovieController : Controller
     {
@@ -21,12 +21,12 @@ namespace Parte_3.Controllers
         }
 
         [HttpPost]
-        public ActionResult Degree(JsonElement source)
+        public ActionResult Degree([FromBody] JsonElement source)
         {
             try
             {
-                string prueba = source.GetProperty("Order").ToString();
-                Singleton.Instance.Movies = new Parte_1.B<Movie>(Convert.ToInt32(prueba));
+                string json = source.GetProperty("Order").ToString();
+                Singleton.Instance.Movies = new Parte_1.B<Movie>(Convert.ToInt32(json));
                 return Ok();
             }
             catch (Exception)
@@ -47,20 +47,43 @@ namespace Parte_3.Controllers
             {
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
-            
+
         }
 
         [Route("populate")]
         [HttpPost]
-        public ActionResult Add(JsonElement source)
+        public ActionResult Add([FromBody] JsonElement source)
         {
             try
             {
-                string prueba = source.ToString();
-                List<Movie> movie = JsonSerializer.Deserialize<List<Movie>>(prueba);
+                string json = source.ToString();
+                List<Movie> movie = JsonSerializer.Deserialize<List<Movie>>(json);
                 foreach (var item in movie)
                 {
                     Singleton.Instance.Movies.Add(item);
+                }
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [Route("populate/[action]")]
+        [HttpPost]
+        public ActionResult UploadFile(IFormFile file)
+        {
+            try
+            {
+                using (StreamReader r = new StreamReader(file.OpenReadStream()))
+                {
+                    string json = r.ReadToEnd();
+                    List<Movie> movie = JsonSerializer.Deserialize<List<Movie>>(json);
+                    foreach (var item in movie)
+                    {
+                        Singleton.Instance.Movies.Add(item);
+                    }
                 }
                 return Ok();
             }
