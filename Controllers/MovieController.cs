@@ -125,15 +125,13 @@ namespace Parte_3.Controllers
         {
             try
             {
-                try
+                var delete = Singleton.Instance.Movies.Find(x => x.title == id);
+                if (delete != null)
                 {
-                    //Singleton.Instance.Movies.Delete(id);
+                    Singleton.Instance.Movies.Delete(delete);
                     return Ok();
                 }
-                catch (Exception)
-                {
-                    return NotFound();
-                }
+                return NotFound();
             }
             catch (Exception)
             {
