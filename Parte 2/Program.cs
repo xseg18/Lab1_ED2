@@ -8,7 +8,7 @@ namespace Parte_2
     {
         static void Main(string[] args)
         {
-        //   B<int> BTree;
+        //    B<int> BTree;
         //    Console.WriteLine("Laboratorio 1 - Parte II");
         //    Console.WriteLine("");
         //Grado:
@@ -39,7 +39,6 @@ namespace Parte_2
         //    Console.WriteLine("¿Qué acción desea realizar?");
         //    Console.WriteLine("1)   Añadir");
         //    Console.WriteLine("2)   Eliminar");
-        //    Console.WriteLine("3)   Buscar");
         //    Console.WriteLine("0)   Salir");
         //    try
         //    {
@@ -65,6 +64,7 @@ namespace Parte_2
         //                            Console.Clear();
         //                            goto Add;
         //                        case "N":
+        //                            Console.Clear();
         //                            goto Menu;
         //                        default:
         //                            Console.Clear();
@@ -83,7 +83,17 @@ namespace Parte_2
         //                Console.WriteLine("Ingrese el número entero que desea eliminar del árbol (Ej. 12)");
         //                try
         //                {
-        //                //eliminación
+        //                    int valor = Convert.ToInt32(Console.ReadLine());
+        //                    try
+        //                    {
+        //                        BTree.Delete(valor);
+        //                    }
+        //                    catch (Exception)
+        //                    {
+        //                        Console.Clear();
+        //                        Console.WriteLine("El dato a eliminar no existe, por favor intente nuevamente");
+        //                        goto Delete;
+        //                    }
 
         //                Optio:
         //                    Console.Write("¿Desea eliminar otro valor? S/N");
@@ -94,6 +104,7 @@ namespace Parte_2
         //                            Console.Clear();
         //                            goto Add;
         //                        case "N":
+        //                            Console.Clear();
         //                            goto Menu;
         //                        default:
         //                            Console.Clear();
@@ -106,35 +117,6 @@ namespace Parte_2
         //                    Console.Clear();
         //                    Console.WriteLine("El dato a eliminar puede ser únicamente un número entero, por favor intente nuevamente");
         //                    goto Delete;
-        //                }
-        //            case 3:
-        //            Search:
-        //                Console.WriteLine("Ingrese el número entero que desea buscar en el árbol (Ej. 12)");
-        //                try
-        //                {
-        //                //búsqueda
-
-        //                Optio:
-        //                    Console.Write("¿Desea buscar otro valor? S/N");
-        //                    string optio = Console.ReadLine().ToUpper();
-        //                    switch (optio)
-        //                    {
-        //                        case "S":
-        //                            Console.Clear();
-        //                            goto Add;
-        //                        case "N":
-        //                            goto Menu;
-        //                        default:
-        //                            Console.Clear();
-        //                            Console.WriteLine("Selección incorrecta, por favor intente nuevamente");
-        //                            goto Optio;
-        //                    }
-        //                }
-        //                catch (Exception)
-        //                {
-        //                    Console.Clear();
-        //                    Console.WriteLine("El valor a buscar puede ser únicamente un número entero, por favor intente nuevamente");
-        //                    goto Search;
         //                }
         //            default:
         //                Console.Clear();
